@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <style>
+        #a{
+            height: 600px;
+            width: 600px;
+            float:left;
+            background-color: aliceblue;
+            backface-visibility:initial;
+            margin-top: 150px;
+            margin-left: 650px;
+        }
+        div a {
+            text-decoration: none;
+        }
+
+        div a:hover{
+            color:#ff70fd
+        }
+
+
+        #log{
+            color:#4158D0;
+            margin-top: 100px;
+            margin-left: 185px;
+            font-size: large;
+            font-style:inherit;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+
+
+        #para1{
+            color:#4158D0;
+            margin-top: 50px;
+            margin-left: 75px;
+            font-size: large;
+            font-style:inherit;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        #mail{
+            margin-top: 50px;
+            margin-left: 105px;
+
+        }
+        #password{
+            margin-left: 105px;
+            margin-top: 15px;
+
+        }
+        #forget{
+            text-decoration: none;
+
+            margin-top: 40px;
+            margin-left: 185px;
+            color: #4158d0 t;
+
+        }
+
+    </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/8ceecd9c16.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+</head>
+<body style="background-image: url('{% static 'images/log.jpg' %}');">
+{% include 'navbar.html'%}
+
+
+    <div id="a" >
+
+        <div id="log"><h1>USER LOGIN</h1></div>
+
+        <div id="para1"><p><h2>Discover the latest trend now</h2></p></div>
+
+     {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-danger {{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+        <form method="post" >{% csrf_token %}
+
+            <div id="mail">
+<!--                <input type="text" name="email" placeholder="  Email" style="width: 400px;">-->
+
+                <input type="text" name="username" placeholder="  Username" style="width: 400px;">
+            </div>
+            <div id="password">
+             <input type="password" name="password" placeholder="  Password" style="width: 400px;">
+            </div>
+
+        <div id="forget">
+
+        <a href="http://127.0.0.1:8000/userreg/" style="margin-left:20px; ">Don't have account?SIGNUP</a>
+        </div>
+                 <input class="btn btn-outline-primary " style=" margin-top: 20px;margin-left:270px" type="submit" value="LOGIN"></center>
+
+        </form>
+
+
+</div>
+
+
+</body>
+</html>

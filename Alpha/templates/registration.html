@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <style>
+        #a{
+            height: 600px;
+            width: 600px;
+            float:left;
+            background-color: aliceblue;
+            backface-visibility:initial;
+            margin-top: 150px;
+            margin-left: 400px;
+        }
+            #b{
+            height: 600px;
+            width: 600px;
+            float: left;
+            background-image:url('{% static 'images/reg div.jpg' %}');
+
+            margin-top: 150px;
+        }
+        div a {
+            text-decoration: none;
+        }
+
+        div a:hover{
+            color:#ff70fd
+        }
+    </style>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     <script src="https://kit.fontawesome.com/8ceecd9c16.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image: url('{% static 'images/reg.jpg' %}');">
+{% include 'navbar.html'%}
+
+    <div id="a">
+    <form method="post" >{% csrf_token %}
+        <div style="font-family: 'Times New Roman', Times, serif;text-align:center ; margin-top: 50px;" >
+            <h1>SHOP SIGN UP</h1>
+        </div>
+        <table style="text-align: center;margin-top: 50px;margin-left: 90px;">
+            <tr>
+                <th> <label>First Name:</label></th>
+                <td>
+                    <input type="text" name="firstname" style="width: 300px;"><br><br>
+                </td>
+            </tr>
+
+            <tr>
+                <th><label>Last Name:</label></th>
+                <td>
+                    <input type="text" name="lastname" style="width: 300px;"><br><br>
+                </td>
+            </tr>
+
+            <tr>
+                <th> <label>Username:</label></th>
+                <td><input type="text" name="username" style="width: 300px;"><br><br></td>
+            </tr>
+
+            <tr>
+                <th> <label>Email:</label></th>
+                <td><input type="email" name="email" style="width: 300px;"><br><br></td>
+            </tr>
+
+            <tr>
+                <th><label>Password:</label></th>
+                <td><input type="password" name="password" style="width: 300px;"><br><br></td>
+            </tr>
+
+            <tr>
+                <th><label>Conform Password:</label></th>
+                <td><input type="password" name="cpassword" style="width: 300px;"><br><br></td>
+            </tr>
+
+
+        </table>
+        <div>
+            <a href="http://127.0.0.1:8000/login/" style="text-decoration: none;color: #4158d0 ; margin-left: 180px; margin-top: 30px;">Already Have an Account?LOGIN</a>
+            <center><input class="btn btn-outline-primary " style=" margin-top: 20px;" type="submit" value="SIGNUP"></center>
+            </div>
+
+    </center>
+    </form></div>
+
+    <div id="b">
+
+    </div>
+
+</body>
+</html>
+
+

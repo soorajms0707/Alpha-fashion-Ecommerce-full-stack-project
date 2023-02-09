@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <style>
+    #a{
+    height: 700px;
+    width: 650px;
+    float:left;
+    background-color: aliceblue;
+    backface-visibility:initial;
+    margin-top: 80px;
+    margin-left: 650px;
+}
+div a {
+    text-decoration: none;
+}
+
+div a:hover{
+    color:#ff70fd
+}
+ nav{
+            background-color:white;
+            height: 150px;
+
+        }
+</style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8ceecd9c16.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product edit</title>
+</head>
+<body style="background-image: url('{% static 'images/edit2.jpg' %}');">
+ <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="http://127.0.0.1:8000/"><img src="{% static 'images/bgremove.jpg' %}" style="width:200px;height:70px;margin-left: 70px;"></a><h1 style="font-family: 'Times New Roman', Times, serif; margin-top: 20px; margin-left: -1300px;">FASHION</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+
+            </button>
+            <!-- off canvas -->
+
+            <button class="btn btn-muted" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="margin-right: 50px;"><i class="fa-solid fa-bars"></i> MENU</button>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel"><i class="fa-solid fa-user"></i> MENU</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <button type="button" class="btn btn-light" style="width: 350px;"><a href="http://127.0.0.1:8000/shop/" style="margin-left:-250px;text-decoration: none;">Home</a></button>
+      <button type="button" class="btn btn-light" style="width: 350px;"><a href="http://127.0.0.1:8000/upload/"  style="margin-left:-250px;text-decoration: none;">Upload</a></button>
+      <button type="button" class="btn btn-light" style="width: 350px;"><a href="http://127.0.0.1:8000/profileedit/"  style="margin-left:-225px;text-decoration: none;">Edit Profile</a></button>
+      <button type="button" class="btn btn-light" style="width: 350px;"><a href="http://127.0.0.1:8000/uploaddisplay/"  style="margin-left:-250px;text-decoration: none;">Display</a></button>
+      <button type="button" class="btn btn-light" style="width: 350px;" ><a href="http://127.0.0.1:8000/login/" style="margin-left:-250px;text-decoration: none;">Log Out</a></button>
+
+  </div>
+</div>
+     </div>
+      </nav>
+
+<!--form-->
+    <div id="a" style="text-align: center;">
+
+        <h1 style="font-family: 'Times New Roman', Times, serif;text-align:center ; margin-top: 50px;">Edit Product</h1>
+        <br><br>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+
+    <label style="margin-left: -10px;">Product Name:</label>
+    <input type="text" name="name" value="{{a.name}}"><br><br>
+    <label style="margin-left: 50px;">Price:</label>
+    <input type="text" name="price" value="{{a.price}}"><br><br>
+    <label style="margin-left: 9px;">Decription:</label>
+    <input type="text" name="description" value="{{a.description}}"><br><br>
+    <img src="{% static im %}" style="margin-left: 50px;" height="200px" width="200px"><br><br>
+    <input style="margin-left: 100px;" type="file" name="image" value="im"><br><br><br>
+    <input type="submit" class="btn btn-outline-primary" value="update">
+</form>
+    </div>
+
+</body>
+</html>

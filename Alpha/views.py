@@ -306,33 +306,31 @@ def buy(request,username,id):
         cartprice = request.POST.get("price")
         cartquantity = request.POST.get("quantity")
         total=int(cartprice)*int(cartquantity)
-        request.session['total'] = total
-        request.session['name'] = cartname
-        request.session['price'] = cartprice
+
         em=request.session['email']
-        send_mail(str() + "||" + "Final bill", "ordered success", EMAIL_HOST_USER, [em])
+        send_mail(str() + "||" + "Final bill", "ordered success ", EMAIL_HOST_USER, [em])
         return render(request,'bill.html',{'n':cartname,'p':cartprice,'q':cartquantity,'t':total,'username':username})
 
     return render(request,'buy.html',{'a':a,'username':username})
 
 
 
-def email_send(request):
-    a=Contactusform()
-    user= request.session['user']
-    b=request.session['total']
-    c=request.session['name']
-
-    d=request.session['email']
-    if request.method=='POST':
-        sub=Contactusform(request.POST)
-        if sub.is_valid():
-            nm=sub.cleaned_data['name']
-            em=sub.cleaned_data['email']
-            ms=sub.cleaned_data['message']
-            send_mail(str(nm)+"||"+"Final bill",ms,EMAIL_HOST_USER,[em])
-            return HttpResponse("email send successfully")
-    return render(request, 'email.html', {'form': a, 'b': b, 'c': c, 'd': d,'username':user})
+# def email_send(request):
+#     a=Contactusform()
+#     user= request.session['user']
+#     b=request.session['total']
+#     c=request.session['name']
+#
+#     d=request.session['email']
+#     if request.method=='POST':
+#         sub=Contactusform(request.POST)
+#         if sub.is_valid():
+#             nm=sub.cleaned_data['name']
+#             em=sub.cleaned_data['email']
+#             ms=sub.cleaned_data['message']
+#             send_mail(str(nm)+"||"+"Final bill",ms,EMAIL_HOST_USER,[em])
+#             return HttpResponse("email send successfully")
+#     return render(request, 'email.html', {'form': a, 'b': b, 'c': c, 'd': d,'username':user})
 
 
 

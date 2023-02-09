@@ -22,7 +22,7 @@ urlpatterns = [
     path('cartdelete/<username>/<int:id>',cartdelete),
     path('buy/<username>/<int:id>',buy),
     path('useredit/<username>',useredit),
-    path('email/',email_send)
+    # path('email/',email_send)
 
 
 

@@ -58,6 +58,7 @@ def login(request):
             b=registrationmodel.objects.all()
             for i in b:
                 request.session['usernme']=i.username
+                request.session['id'] = i.id
                 if un==i.username and pas==i.password:
                     return redirect(f'/shop/{un}')
             else:
@@ -73,14 +74,15 @@ def upload(request,username):
 
     if request.method=='POST':
         registrationmodel.objects.get(username=username)
-        # request.session['username'] = username
+        uid=request.session['id']
+
         a=uploadform(request.POST,request.FILES)
         if a.is_valid():
             nm=a.cleaned_data["name"]
             pr=a.cleaned_data["price"]
             de=a.cleaned_data["description"]
             im=a.cleaned_data["image"]
-            b=uploadmodel(name=nm,price=pr,description=de,image=im)
+            b=uploadmodel(uid=uid,name=nm,price=pr,description=de,image=im)
             b.save()
             return redirect(f'/shop/{username}')
         else:
@@ -90,7 +92,8 @@ def upload(request,username):
 def uploaddisplay(request):
 
 
-    y = request.session['username']
+    id1 = request.session['id']
+    y=request.session['username']
 
     x=uploadmodel.objects.all()
     li=[]
@@ -98,7 +101,10 @@ def uploaddisplay(request):
     pr=[]
     de=[]
     id=[]
+    uid=[]
     for i in x:
+        u=i.uid
+        uid.append(u)
         a=i.image
         li.append(str(a).split('/')[-1])
         b=i.name
@@ -109,9 +115,9 @@ def uploaddisplay(request):
         de.append(d)
         e=i.id
         id.append(e)
-    mylist=zip(li,nm,pr,de,id)
+    mylist=zip(li,nm,pr,de,id,uid)
 
-    return render(request,'display.html',{'mylist':mylist,'username':y})
+    return render(request,'display.html',{'mylist':mylist,'userid':id1,'username':y})
 
 
 def uploaddelete(request,id):
@@ -210,7 +216,9 @@ def userlogin(request):
         for i in a:
             if i.password==password and i.username==username:
                 email=i.email
+                id=i.id
                 request.session['email']=email
+                request.session['id'] = id
 
 
         user_obj=User.objects.filter(username=username).first()
@@ -254,18 +262,25 @@ def user(request,username):
 
 def cart(request,username,id):
     a=uploadmodel.objects.get(id=id)
-    b=cartmodel(cartimage=a.image,cartname=a.name,cartprice=a.price,cartdescription=a.description)
+    uid=request.session['id']
+    b=cartmodel(uid=uid,cartimage=a.image,cartname=a.name,cartprice=a.price,cartdescription=a.description)
     b.save()
     return render(request,'cartsuccess.html',{'username':username})
 
 def cartdisplay(request,username):
+
+    id1 = request.session['id']
+
     x=cartmodel.objects.all()
     image = []
     name = []
     price = []
     des = []
     id = []
+    uid=[]
     for i in x:
+        u = i.uid
+        uid.append(u)
         a = i.cartimage
         image.append(str(a).split('/')[-1])
         b = i.cartname
@@ -276,9 +291,9 @@ def cartdisplay(request,username):
         des.append(d)
         e = i.id
         id.append(e)
-    mylist = zip(image, name, price, des, id)
+    mylist = zip(image, name, price, des, id,uid)
 
-    return render(request,'cartdisplay.html',{'mylist':mylist,'username':username})
+    return render(request,'cartdisplay.html',{'mylist':mylist,'userid':id1,'username':username})
 
 def cartdelete(request,username,id):
     a=cartmodel.objects.get(id=id)

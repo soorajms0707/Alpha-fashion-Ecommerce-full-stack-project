@@ -13,6 +13,7 @@ class registrationmodel(models.Model):
         return self.firstname
 
 class uploadmodel(models.Model):
+    uid=models.IntegerField()
     name=models.CharField(max_length=20)
     price=models.IntegerField()
     description=models.CharField(max_length=50)
@@ -27,6 +28,7 @@ class profile(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
 
 class cartmodel(models.Model):
+    uid = models.IntegerField()
     cartname=models.CharField(max_length=20)
     cartprice=models.IntegerField()
     cartdescription=models.CharField(max_length=50)
